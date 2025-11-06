@@ -801,6 +801,332 @@
             background: #0051D5;
         }
 
+        /* Industry Problems Section */
+        .industry-overview {
+            background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .industry-overview h3 {
+            color: var(--apple-blue);
+            margin-bottom: 1rem;
+        }
+
+        .industry-overview p {
+            font-size: 1.125rem;
+        }
+
+        /* Domain Tabs */
+        .domain-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .domain-tab {
+            background: white;
+            border: 2px solid #E5E5EA;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .domain-tab:hover {
+            border-color: var(--apple-blue);
+            transform: translateY(-2px);
+        }
+
+        .domain-tab.active {
+            background: var(--apple-blue);
+            color: white;
+            border-color: var(--apple-blue);
+        }
+
+        .domain-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Problem Cards */
+        .problems-container {
+            display: none;
+        }
+
+        .problems-container.active {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--apple-blue);
+        }
+
+        .problem-card:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-4px);
+        }
+
+        .problem-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-number {
+            display: inline-block;
+            background: var(--apple-blue);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-challenge {
+            background: #FFF3CD;
+            border-left: 4px solid var(--gold);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .problem-challenge h5 {
+            color: #856404;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-challenge p {
+            color: #856404;
+            font-size: 1rem;
+        }
+
+        .problem-solution {
+            background: #D4EDDA;
+            border-left: 4px solid #28A745;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .problem-solution h5 {
+            color: #155724;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-solution p {
+            color: #155724;
+            font-size: 1rem;
+        }
+
+        .algorithms-section {
+            margin: 1.5rem 0;
+        }
+
+        .algorithms-section h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .algorithm-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .algorithm-tag {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051D5 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .algorithm-tag.alternative {
+            background: linear-gradient(135deg, #86868B 0%, #6E6E73 100%);
+        }
+
+        /* Expandable Sections */
+        .expandable-section {
+            margin: 1rem 0;
+        }
+
+        .expand-btn {
+            background: #F5F5F7;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: #E8E8ED;
+        }
+
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .expandable-section.open .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .expand-content-inner {
+            padding: 1.5rem 1rem;
+        }
+
+        /* Impact Metrics */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .impact-item {
+            background: #F5F5F7;
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .impact-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--apple-blue);
+        }
+
+        .impact-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Data Sources */
+        .data-sources {
+            margin: 1rem 0;
+        }
+
+        .data-source-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .data-tag {
+            background: white;
+            border: 2px solid var(--apple-blue);
+            color: var(--apple-blue);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .data-tag:hover {
+            background: var(--apple-blue);
+            color: white;
+        }
+
+        /* Real World Examples */
+        .examples-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .examples-list li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .examples-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28A745;
+            font-weight: bold;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--apple-blue);
+        }
+
+        .kpi-name {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-target {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--apple-blue);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -835,6 +1161,19 @@
             .industry-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
+
+            .problems-container.active {
+                grid-template-columns: 1fr;
+            }
+
+            .domain-tabs {
+                flex-direction: column;
+            }
+
+            .domain-tab {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         /* Print Styles */
@@ -862,6 +1201,7 @@
                 <li><a href="#purpose">Purpose</a></li>
                 <li><a href="#objectives">Objectives</a></li>
                 <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#industry-problems">Industry Examples</a></li>
                 <li><a href="#deliverables">Deliverables</a></li>
                 <li><a href="#assessment">Assessment</a></li>
                 <li><a href="#submission">Submission</a></li>
@@ -1123,6 +1463,571 @@
                             <div class="accordion-content">
                                 <div class="accordion-content-inner">
                                     <p>Address overfitting/underfitting, data quality issues, potential biases, model drift, and governance/regulatory considerations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry-Specific Business Problems Section -->
+    <section id="industry-problems">
+        <div class="container">
+            <h2>Banking & Financial Services</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem;">Real-world AI/ML business problems and use cases</p>
+
+            <div class="industry-overview">
+                <h3>🏦 Industry Overview</h3>
+                <p>The global banking and financial services sector manages $200+ trillion in assets, processes billions of transactions daily, and faces increasing regulatory scrutiny, digital disruption, and cybersecurity threats.</p>
+            </div>
+
+            <!-- Domain Tabs -->
+            <div class="domain-tabs">
+                <div class="domain-tab active" onclick="switchDomain('retail')">
+                    <span class="domain-icon">💳</span>
+                    <span>Retail Banking</span>
+                </div>
+                <div class="domain-tab" onclick="switchDomain('investment')">
+                    <span class="domain-icon">📈</span>
+                    <span>Investment Banking & Trading</span>
+                </div>
+                <div class="domain-tab" onclick="switchDomain('insurance')">
+                    <span class="domain-icon">🛡️</span>
+                    <span>Insurance</span>
+                </div>
+            </div>
+
+            <!-- Retail Banking Problems -->
+            <div class="problems-container active" id="retail-problems">
+                <!-- Problem 1: Credit Risk Assessment -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 1</span>
+                        <h3 class="problem-title">Credit Risk Assessment & Loan Default Prediction</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Banks lose $50-100 billion annually to loan defaults. Traditional credit scoring models (FICO) miss 20-30% of defaults while rejecting creditworthy applicants.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>ML-based credit scoring system</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">Logistic Regression (Primary)</span>
+                            <span class="algorithm-tag alternative">Random Forest</span>
+                            <span class="algorithm-tag alternative">XGBoost</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">📉</div>
+                                        <div class="impact-value">5% → 3%</div>
+                                        <div class="impact-label">Default Rate</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">💰</div>
+                                        <div class="impact-value">$20M</div>
+                                        <div class="impact-label">Saved per $1B</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">✅</div>
+                                        <div class="impact-value">10-15%</div>
+                                        <div class="impact-label">Improved Approvals</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">⚡</div>
+                                        <div class="impact-value">Minutes</div>
+                                        <div class="impact-label">Processing Time</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">JPMorgan Chase:</span> Reduced credit card default rate by 20% using ML</li>
+                                    <li><span class="company-name">Wells Fargo:</span> Automated 65% of credit decisions using ML models</li>
+                                    <li><span class="company-name">Capital One:</span> Uses ensemble models achieving 15% better accuracy than traditional scoring</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Default Rate</div>
+                                        <div class="kpi-target">< 3%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">False Positive Rate</div>
+                                        <div class="kpi-target">< 10%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">AUC-ROC</div>
+                                        <div class="kpi-target">> 0.80</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Processing Time</div>
+                                        <div class="kpi-target">< 5 min</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">Kaggle: Loan Default Dataset</span>
+                                    <span class="data-tag">UCI: Credit Card Clients</span>
+                                    <span class="data-tag">Lending Club Loan Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem 2: Customer Lifetime Value -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 2</span>
+                        <h3 class="problem-title">Customer Lifetime Value (CLV) Prediction</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Banks spend $200-500 to acquire each customer but lack accurate prediction of long-term profitability. 80% of profits come from 20% of customers.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>Predictive CLV model for customer segmentation and resource allocation</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">Linear Regression (Primary)</span>
+                            <span class="algorithm-tag alternative">Random Forest Regression</span>
+                            <span class="algorithm-tag alternative">Gradient Boosting</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">🎯</div>
+                                        <div class="impact-value">15-25%</div>
+                                        <div class="impact-label">ROI Improvement</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">💎</div>
+                                        <div class="impact-value">High-CLV</div>
+                                        <div class="impact-label">Segment Focus</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">🔄</div>
+                                        <div class="impact-value">Optimized</div>
+                                        <div class="impact-label">Marketing Spend</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">Bank of America:</span> Uses CLV models to segment 66 million customers, increased cross-sell by 30%</li>
+                                    <li><span class="company-name">HSBC:</span> Implemented CLV-based relationship pricing, improved profitability by 18%</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">R-squared</div>
+                                        <div class="kpi-target">> 0.50</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">RMSE</div>
+                                        <div class="kpi-target">< 20% of mean</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Marketing ROI</div>
+                                        <div class="kpi-target">Improvement %</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">Kaggle: Bank Marketing Dataset</span>
+                                    <span class="data-tag">UCI: Bank Marketing Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem 3: Customer Churn -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 3</span>
+                        <h3 class="problem-title">Customer Churn Prediction</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Retail banks lose 10-15% of customers annually. Acquiring a new customer costs 5-7× more than retaining existing ones. Average customer value: $500-2,000/year.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>Predictive churn model with proactive retention interventions</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">Logistic Regression (Primary)</span>
+                            <span class="algorithm-tag">Random Forest (Primary)</span>
+                            <span class="algorithm-tag alternative">XGBoost</span>
+                            <span class="algorithm-tag alternative">Neural Networks</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">📊</div>
+                                        <div class="impact-value">5%</div>
+                                        <div class="impact-label">Retention Improvement</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">💰</div>
+                                        <div class="impact-value">$10-25M</div>
+                                        <div class="impact-label">Annual Savings</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">🎯</div>
+                                        <div class="impact-value">Targeted</div>
+                                        <div class="impact-label">Retention Campaigns</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">Bank of America:</span> Reduced churn by 12% using ML-based early warning system</li>
+                                    <li><span class="company-name">TD Bank:</span> Achieved 85% accuracy in predicting churn 6 months in advance</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Churn Rate</div>
+                                        <div class="kpi-target">< 10% annually</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Prediction Accuracy</div>
+                                        <div class="kpi-target">> 75%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">ROC-AUC</div>
+                                        <div class="kpi-target">> 0.75</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">Kaggle: Bank Customer Churn</span>
+                                    <span class="data-tag">Kaggle: Telco Customer Churn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investment Banking Problems -->
+            <div class="problems-container" id="investment-problems">
+                <!-- Problem 4: Algorithmic Trading -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 4</span>
+                        <h3 class="problem-title">Algorithmic Trading - Price Movement Prediction</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Institutional traders execute $500B+ daily in equity markets. Even 0.1% improvement in execution quality = $500M daily value capture.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>ML-powered algorithmic trading system for tactical price prediction</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">Random Forest (Primary)</span>
+                            <span class="algorithm-tag alternative">XGBoost</span>
+                            <span class="algorithm-tag alternative">LSTM</span>
+                            <span class="algorithm-tag alternative">Reinforcement Learning</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">📈</div>
+                                        <div class="impact-value">2-5%</div>
+                                        <div class="impact-label">Execution Quality</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">💰</div>
+                                        <div class="impact-value">$50-150M</div>
+                                        <div class="impact-label">Annual Value</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">📊</div>
+                                        <div class="impact-value">Higher</div>
+                                        <div class="impact-label">Sharpe Ratio</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">Two Sigma:</span> Uses ensemble ML models, manages $60B AUM</li>
+                                    <li><span class="company-name">Renaissance Technologies:</span> Medallion Fund 39% annualized returns using ML</li>
+                                    <li><span class="company-name">Citadel Securities:</span> Executes 47% of US retail equity volume algorithmically</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Directional Accuracy</div>
+                                        <div class="kpi-target">> 52%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Sharpe Ratio</div>
+                                        <div class="kpi-target">> 1.5</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Win Rate</div>
+                                        <div class="kpi-target">> 55%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Max Drawdown</div>
+                                        <div class="kpi-target">< 15%</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">Kaggle: Stock Market Dataset</span>
+                                    <span class="data-tag">Alpha Vantage API</span>
+                                    <span class="data-tag">Yahoo Finance API</span>
+                                    <span class="data-tag">Quandl Financial Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Problem 5: Volatility Forecasting -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 5</span>
+                        <h3 class="problem-title">Volatility Forecasting for Risk Management</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Banks must hold regulatory capital against risk (Basel III). Inaccurate volatility forecasts lead to regulatory violations or inefficient capital allocation.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>Time series forecasting for volatility prediction</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">ARIMA (Primary)</span>
+                            <span class="algorithm-tag">GARCH (Primary)</span>
+                            <span class="algorithm-tag alternative">LSTM</span>
+                            <span class="algorithm-tag alternative">Prophet</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">✓</div>
+                                        <div class="impact-value">Accurate</div>
+                                        <div class="impact-label">VaR Calculations</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">📉</div>
+                                        <div class="impact-value">15-25%</div>
+                                        <div class="impact-label">Drawdown Reduction</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">🛡️</div>
+                                        <div class="impact-value">Optimized</div>
+                                        <div class="impact-label">Hedging Costs</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">JPMorgan:</span> Uses GARCH models for VaR, managing $3.7T in assets</li>
+                                    <li><span class="company-name">Goldman Sachs:</span> Volatility forecasting for trading desk risk limits</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">RMSE</div>
+                                        <div class="kpi-target">< 3 pp</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Direction Accuracy</div>
+                                        <div class="kpi-target">> 65%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">VaR Coverage</div>
+                                        <div class="kpi-target">95%</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">CBOE VIX Historical Data</span>
+                                    <span class="data-tag">Yahoo Finance</span>
+                                    <span class="data-tag">FRED Economic Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insurance Problems -->
+            <div class="problems-container" id="insurance-problems">
+                <!-- Problem 6: Insurance Fraud Detection -->
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <span class="problem-number">Problem 6</span>
+                        <h3 class="problem-title">Insurance Claim Fraud Detection</h3>
+                    </div>
+
+                    <div class="problem-challenge">
+                        <h5>Business Challenge</h5>
+                        <p>Insurance fraud costs $80 billion annually. Traditional methods catch only 15-20% of fraud.</p>
+                    </div>
+
+                    <div class="problem-solution">
+                        <h5>Proposed Solution</h5>
+                        <p>ML-based fraud detection system</p>
+                    </div>
+
+                    <div class="algorithms-section">
+                        <h5>Algorithms Applicable</h5>
+                        <div class="algorithm-tags">
+                            <span class="algorithm-tag">Random Forest (Primary)</span>
+                            <span class="algorithm-tag">XGBoost (Primary)</span>
+                            <span class="algorithm-tag alternative">Logistic Regression</span>
+                            <span class="algorithm-tag alternative">Isolation Forest</span>
+                        </div>
+                    </div>
+
+                    <div class="expandable-section">
+                        <button class="expand-btn" onclick="toggleExpand(this)">
+                            <span>View Business Impact & Details</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                        <div class="expand-content">
+                            <div class="expand-content-inner">
+                                <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                <div class="impact-grid">
+                                    <div class="impact-item">
+                                        <div class="impact-icon">🎯</div>
+                                        <div class="impact-value">30-50%</div>
+                                        <div class="impact-label">Detection Improvement</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">💰</div>
+                                        <div class="impact-value">$10-20M</div>
+                                        <div class="impact-label">Annual Savings</div>
+                                    </div>
+                                    <div class="impact-item">
+                                        <div class="impact-icon">⚡</div>
+                                        <div class="impact-value">Faster</div>
+                                        <div class="impact-label">Claim Processing</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                <ul class="examples-list">
+                                    <li><span class="company-name">Allstate:</span> ML fraud detection saved $45M in first year</li>
+                                    <li><span class="company-name">State Farm:</span> Reduced fraud investigation time by 40%</li>
+                                </ul>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                <div class="kpi-grid">
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">Fraud Detection Rate</div>
+                                        <div class="kpi-target">> 80%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">False Positive Rate</div>
+                                        <div class="kpi-target">< 10%</div>
+                                    </div>
+                                    <div class="kpi-card">
+                                        <div class="kpi-name">ROI</div>
+                                        <div class="kpi-target">Positive</div>
+                                    </div>
+                                </div>
+
+                                <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                <div class="data-source-tags">
+                                    <span class="data-tag">Kaggle: Insurance Fraud Detection</span>
+                                    <span class="data-tag">Kaggle: Auto Insurance Claims</span>
                                 </div>
                             </div>
                         </div>
@@ -1479,6 +2384,40 @@
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
     <script>
+        // Domain Tab Switcher
+        function switchDomain(domain) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.domain-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Hide all problem containers
+            document.querySelectorAll('.problems-container').forEach(container => {
+                container.classList.remove('active');
+            });
+
+            // Activate clicked tab
+            event.target.closest('.domain-tab').classList.add('active');
+
+            // Show corresponding problems container
+            const containerId = domain + '-problems';
+            document.getElementById(containerId).classList.add('active');
+        }
+
+        // Toggle Expand/Collapse
+        function toggleExpand(button) {
+            const section = button.parentElement;
+            const content = section.querySelector('.expand-content');
+
+            if (section.classList.contains('open')) {
+                section.classList.remove('open');
+                content.style.maxHeight = null;
+            } else {
+                section.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
         // Countdown Timer
         function updateCountdown() {
             const deadline = new Date('November 26, 2025 23:59:59 GMT+0530').getTime();
