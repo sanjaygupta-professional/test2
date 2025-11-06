@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Algorithm Playbook - Final Assignment</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-white: #FFFFFF;
+            --apple-blue: #007AFF;
+            --gold: #FFD700;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --bg-gradient: linear-gradient(180deg, #FFFFFF 0%, #F5F5F7 100%);
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-strong: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0.75rem 0;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--apple-blue);
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            height: 3px;
+            background: var(--apple-blue);
+            z-index: 999;
+            transition: width 0.1s ease;
+        }
+
+        /* Section Base Styles */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.625rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F0F7FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 122, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--apple-blue);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .key-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .info-card h3 {
+            color: var(--apple-blue);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-card p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            display: inline-block;
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-strong);
+            margin-top: 2rem;
+        }
+
+        .timer-grid {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .timer-unit {
+            text-align: center;
+        }
+
+        .timer-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--apple-blue);
+            display: block;
+        }
+
+        .timer-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Algorithm Grid */
+        .algorithm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .algorithm-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .algorithm-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+            border-color: var(--apple-blue);
+        }
+
+        .algorithm-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .algorithm-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        /* Learning Objectives */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .objective-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+        }
+
+        .objective-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .objective-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(2px 2px 4px rgba(255, 215, 0, 0.3));
+        }
+
+        .objective-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .objective-card p {
+            font-size: 1rem;
+        }
+
+        /* Task Steps */
+        .steps-container {
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--apple-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .industry-tile {
+            background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .industry-tile:hover {
+            background: var(--apple-blue);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .industry-tile .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 1.5rem;
+        }
+
+        .accordion-item {
+            background: #F5F5F7;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: #E8E8ED;
+        }
+
+        .accordion-header h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content-inner {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Deliverables */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .deliverable-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .deliverable-section h3 {
+            color: var(--apple-blue);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-count {
+            background: var(--gold);
+            color: var(--text-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .deliverable-list {
+            list-style: none;
+        }
+
+        .deliverable-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #F5F5F7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .deliverable-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Table */
+        .contribution-table {
+            width: 100%;
+            margin-top: 2rem;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contribution-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .contribution-table th {
+            background: var(--gold);
+            color: var(--text-primary);
+            padding: 1.25rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .contribution-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid #F5F5F7;
+        }
+
+        .contribution-table tr:hover {
+            background: #F5F5F7;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: var(--apple-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .download-btn:hover {
+            background: #0051D5;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Assessment Cards */
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .assessment-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .assessment-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .points {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .points-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--apple-blue);
+        }
+
+        .progress-circle {
+            width: 80px;
+            height: 80px;
+            position: relative;
+        }
+
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle circle {
+            fill: none;
+            stroke-width: 8;
+        }
+
+        .progress-bg {
+            stroke: #F5F5F7;
+        }
+
+        .progress-fill {
+            stroke: var(--apple-blue);
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        /* Comparison */
+        .comparison-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .comparison-box.weak {
+            border-left: 4px solid #FF3B30;
+        }
+
+        .comparison-box.strong {
+            border-left: 4px solid #34C759;
+        }
+
+        .comparison-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-header h3 {
+            margin: 0;
+        }
+
+        .icon-badge {
+            font-size: 1.5rem;
+        }
+
+        .comparison-content {
+            line-height: 1.8;
+        }
+
+        .comparison-issues,
+        .comparison-strengths {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: #F5F5F7;
+            border-radius: 12px;
+        }
+
+        .comparison-issues h4,
+        .comparison-strengths h4 {
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .comparison-issues ul,
+        .comparison-strengths ul {
+            padding-left: 1.5rem;
+        }
+
+        .comparison-issues li,
+        .comparison-strengths li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Checklist */
+        .checklist {
+            margin-top: 2rem;
+        }
+
+        .checklist-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            box-shadow: var(--shadow-medium);
+        }
+
+        .checkbox {
+            width: 32px;
+            height: 32px;
+            border: 2px solid var(--apple-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            color: var(--apple-blue);
+        }
+
+        .checklist-text {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+        }
+
+        .warning-box {
+            background: #FFF3CD;
+            border-left: 4px solid #FFD700;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 0.5rem;
+        }
+
+        .warning-box p {
+            color: #856404;
+        }
+
+        /* Policy Grid */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .policy-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .policy-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .policy-section.allowed h3 {
+            color: #34C759;
+        }
+
+        .policy-section.required h3 {
+            color: var(--apple-blue);
+        }
+
+        .policy-list {
+            list-style: none;
+        }
+
+        .policy-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #F5F5F7;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+        }
+
+        .policy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .policy-icon {
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: var(--apple-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-strong);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            background: #0051D5;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            .deliverables-grid,
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timer-grid {
+                gap: 1rem;
+            }
+
+            .timer-value {
+                font-size: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .industry-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav,
+            .back-to-top,
+            .countdown-timer {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">AI/ML Playbook</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#purpose">Purpose</a></li>
+                <li><a href="#objectives">Objectives</a></li>
+                <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#deliverables">Deliverables</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+                <li><a href="#submission">Submission</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Section 1: Hero -->
+    <section id="hero">
+        <div class="container hero-content">
+            <p class="subtitle">Final Group Assignment - Foundations of ML & AI</p>
+            <h1>AI/ML Algorithm Playbook</h1>
+            <div class="key-info">
+                <div class="info-card">
+                    <h3>Deadline</h3>
+                    <p>Nov 26, 2025<br>11:59 PM IST</p>
+                </div>
+                <div class="info-card">
+                    <h3>Format</h3>
+                    <p>Group Project</p>
+                </div>
+                <div class="info-card">
+                    <h3>Deliverable</h3>
+                    <p>10-15 Pages<br>Industry Playbook</p>
+                </div>
+            </div>
+            <div class="countdown-timer">
+                <div class="timer-grid">
+                    <div class="timer-unit">
+                        <span class="timer-value" id="days">00</span>
+                        <span class="timer-label">Days</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-value" id="hours">00</span>
+                        <span class="timer-label">Hours</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-value" id="minutes">00</span>
+                        <span class="timer-label">Minutes</span>
+                    </div>
+                    <div class="timer-unit">
+                        <span class="timer-value" id="seconds">00</span>
+                        <span class="timer-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Purpose & Context -->
+    <section id="purpose">
+        <div class="container">
+            <h2>Purpose & Context</h2>
+            <p style="font-size: 1.25rem; max-width: 900px; margin-bottom: 3rem;">
+                As senior leaders, your job is not to tune hyperparameters but to identify high-value business problems,
+                match them to appropriate AI/ML algorithms, and evaluate risks, KPIs, and governance implications.
+            </p>
+            <h3>10 Classical Algorithms Covered</h3>
+            <div class="algorithm-grid">
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">📈</div>
+                    <h3>Linear Regression</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">📊</div>
+                    <h3>Logistic Regression</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">🌳</div>
+                    <h3>Decision Trees</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">👥</div>
+                    <h3>KNN</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">🛒</div>
+                    <h3>Apriori Algorithm</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">🎯</div>
+                    <h3>K-Means/K-Medians/<br>K-Modes Clustering</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">🔗</div>
+                    <h3>Hierarchical Clustering</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">⚡</div>
+                    <h3>AdaBoost</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">🌲</div>
+                    <h3>Random Forests</h3>
+                </div>
+                <div class="algorithm-card">
+                    <div class="algorithm-icon">📉</div>
+                    <h3>ARIMA</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Learning Objectives -->
+    <section id="objectives">
+        <div class="container">
+            <h2>Learning Objectives</h2>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-icon">🎯</div>
+                    <h3>Algorithm Mapping</h3>
+                    <p>Map business problems to appropriate algorithms from the course</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">🧠</div>
+                    <h3>Justify Selection</h3>
+                    <p>Explain why an algorithm fits based on data type, problem type, and interpretability</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">📊</div>
+                    <h3>Link to KPIs</h3>
+                    <p>Connect models to concrete business KPIs like revenue, cost, risk, and customer metrics</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">✓</div>
+                    <h3>Evaluation Strategy</h3>
+                    <p>Describe evaluation metrics and validation strategies including confusion matrix and cross-validation</p>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-icon">⚠️</div>
+                    <h3>Risk Assessment</h3>
+                    <p>Discuss risks, limitations, and governance from an executive perspective</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Task Breakdown -->
+    <section id="tasks">
+        <div class="container">
+            <h2>Task Breakdown</h2>
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Choose Your Industry</div>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Select one industry for your playbook. Your team will write for executives in this sector.</p>
+                    <div class="industry-grid">
+                        <div class="industry-tile">
+                            <div class="icon">🏦</div>
+                            <div>Banking / Financial Services</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🛡️</div>
+                            <div>Insurance</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🛍️</div>
+                            <div>Retail / e-Commerce</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🏥</div>
+                            <div>Healthcare / Pharma</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">📱</div>
+                            <div>Telecom</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🏭</div>
+                            <div>Manufacturing</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🚚</div>
+                            <div>Logistics / Supply Chain</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">⚡</div>
+                            <div>Energy / Utilities</div>
+                        </div>
+                        <div class="industry-tile">
+                            <div class="icon">🏛️</div>
+                            <div>Public Sector / Smart Cities</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Algorithm Assignment</div>
+                    </div>
+                    <p style="font-size: 1.125rem;">Each member picks ONE algorithm from the list of 10. Each team member becomes the primary owner for their chosen algorithm.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-header" onclick="toggleAccordion(this)">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Core Requirements</div>
+                        <div class="accordion-icon" style="margin-left: auto;">▼</div>
+                    </div>
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordionItem(this)">
+                                <h4>1. Identify Strong Use Case</h4>
+                                <span class="accordion-icon">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <p>Find at least one strong use case in your chosen industry (real-world case or realistic synthesis). The use case should be specific, credible, and business-focused.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordionItem(this)">
+                                <h4>2. Explain Business Problem and Data</h4>
+                                <span class="accordion-icon">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <p>Describe the business problem, the data used, data sources, time horizons, and relevant variables. Be specific about what data you'd need and where it comes from.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordionItem(this)">
+                                <h4>3. Justify Algorithm Selection</h4>
+                                <span class="accordion-icon">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <p>Explain why this algorithm is appropriate based on data type, problem type (classification/regression/clustering/time-series), interpretability needs, and bias-variance profile.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordionItem(this)">
+                                <h4>4. Define KPIs and Evaluation</h4>
+                                <span class="accordion-icon">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <p>Link to business KPIs (revenue, cost, risk, customer metrics) and describe evaluation metrics (confusion matrix, precision/recall, ROC-AUC, MAPE/RMSE) and validation strategies (k-fold CV, train-test split).</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" onclick="toggleAccordionItem(this)">
+                                <h4>5. Discuss Limitations</h4>
+                                <span class="accordion-icon">▼</span>
+                            </div>
+                            <div class="accordion-content">
+                                <div class="accordion-content-inner">
+                                    <p>Address overfitting/underfitting, data quality issues, potential biases, model drift, and governance/regulatory considerations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Deliverables -->
+    <section id="deliverables">
+        <div class="container">
+            <h2>Deliverables</h2>
+            <div class="deliverables-grid">
+                <div class="deliverable-section">
+                    <h3>📄 Group Report <span class="page-count">10-15 pages</span></h3>
+                    <ul class="deliverable-list">
+                        <li>
+                            <span>Executive Summary</span>
+                            <span class="page-count">1 page</span>
+                        </li>
+                        <li>
+                            <span>Industry & Data Landscape</span>
+                            <span class="page-count">1-2 pages</span>
+                        </li>
+                        <li>
+                            <span>Algorithm Playbook</span>
+                            <span class="page-count">6-9 pages</span>
+                        </li>
+                        <li>
+                            <span>Cross-Algorithm Comparison</span>
+                            <span class="page-count">1-2 pages</span>
+                        </li>
+                        <li>
+                            <span>References & Appendices</span>
+                            <span class="page-count">8-10 sources</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="deliverable-section">
+                    <h3>✍️ Individual Reflection <span class="page-count">1-2 pages</span></h3>
+                    <ul class="deliverable-list">
+                        <li>Algorithm owned</li>
+                        <li>Key learnings</li>
+                        <li>Application to own organization</li>
+                        <li>Reflections on evaluation and bias-variance</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-secondary);">
+                        Note: Each member's reflection must be attached as an appendix in the group report.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Team Collaboration -->
+    <section id="collaboration">
+        <div class="container">
+            <h2>Team Collaboration</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.125rem;">
+                Each member is the primary owner for exactly one algorithm. Include a contribution matrix showing task ownership.
+            </p>
+            <div class="contribution-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task / Section</th>
+                            <th>Primary Owner</th>
+                            <th>Secondary Contributors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Industry and Data Landscape</td>
+                            <td>Member A</td>
+                            <td>Member B</td>
+                        </tr>
+                        <tr>
+                            <td>Linear Regression section</td>
+                            <td>Member B</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Logistic Regression section</td>
+                            <td>Member C</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Decision Trees section</td>
+                            <td>Member D</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>Cross-Algorithm Comparison</td>
+                            <td>Member A</td>
+                            <td>All Members</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="#" class="download-btn">Download Template</a>
+        </div>
+    </section>
+
+    <!-- Section 7: Assessment Criteria -->
+    <section id="assessment">
+        <div class="container">
+            <h2>Assessment Criteria</h2>
+            <h3 style="margin-top: 2rem;">Group Component (70%)</h3>
+            <div class="assessment-grid">
+                <div class="assessment-card">
+                    <h4>Quality & Relevance of Use Cases</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Real or realistic use cases, clearly described and tied to industry</p>
+                    <div class="points">
+                        <span class="points-value">20</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Correct Problem-to-Algorithm Mapping</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Understanding which algorithm fits which problem type</p>
+                    <div class="points">
+                        <span class="points-value">10</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Evaluation & Metrics Treatment</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Appropriate use of evaluation metrics and correct reasoning</p>
+                    <div class="points">
+                        <span class="points-value">10</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Bias-Variance & Validation</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Understanding of overfitting, validation splits, and model monitoring</p>
+                    <div class="points">
+                        <span class="points-value">10</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Cross-Algorithm Insight</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Clear comparative insights and tradeoffs in performance and business fit</p>
+                    <div class="points">
+                        <span class="points-value">10</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Clarity & Executive Communication</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Well-structured, concise, and compelling for executives</p>
+                    <div class="points">
+                        <span class="points-value">10</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Individual Component (30%)</h3>
+            <div class="assessment-grid">
+                <div class="assessment-card">
+                    <h4>Quality of Individual Sections</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Conceptual accuracy, depth, and clarity of owned algorithm</p>
+                    <div class="points">
+                        <span class="points-value">15</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+                <div class="assessment-card">
+                    <h4>Individual Reflection Note</h4>
+                    <p style="font-size: 0.95rem; margin: 0.75rem 0;">Thoughtfulness, evidence of learning, and linkage to own context</p>
+                    <div class="points">
+                        <span class="points-value">15</span>
+                        <span style="color: var(--text-secondary);">points</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Quality Standards -->
+    <section id="quality">
+        <div class="container">
+            <h2>Quality Standards</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.125rem;">
+                Example: Logistic Regression for credit card default prediction in banking
+            </p>
+            <div class="comparison-container">
+                <div class="comparison-box weak">
+                    <div class="comparison-header">
+                        <span class="icon-badge">❌</span>
+                        <h3>Weak Example</h3>
+                    </div>
+                    <div class="comparison-content">
+                        <p>Logistic Regression is a machine learning algorithm used for classification. In our bank, we can use it to predict which customers will default on their credit cards. We will collect lots of data and train the model. If the accuracy is high, the model is good and we can use it to approve or reject customers. Logistic Regression is good because it is simple and used a lot in the industry. We will check the confusion matrix and try to reduce errors. This will help the bank reduce risk.</p>
+                    </div>
+                    <div class="comparison-issues">
+                        <h4>Issues:</h4>
+                        <ul>
+                            <li>Very generic; not tied to concrete business scenario</li>
+                            <li>No specific mention of data variables or sources</li>
+                            <li>Relies only on "accuracy" without discussing class imbalance</li>
+                            <li>No explicit link to business KPIs</li>
+                            <li>No discussion of regulatory or fairness considerations</li>
+                            <li>No mention of validation approach or bias-variance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="comparison-box strong">
+                    <div class="comparison-header">
+                        <span class="icon-badge">✓</span>
+                        <h3>Strong Example</h3>
+                    </div>
+                    <div class="comparison-content">
+                        <p><strong>Business problem:</strong> The bank wants to reduce credit card defaults in its mass retail segment without unnecessarily rejecting profitable customers. Binary classification: default within 12 months (yes/no).</p>
+                        <p style="margin-top: 1rem;"><strong>Data:</strong> 3 years of historical data including demographics, account behavior (utilization ratio, late payments), and bureau variables. Target: 90+ days past due within 12 months.</p>
+                        <p style="margin-top: 1rem;"><strong>Why Logistic Regression:</strong> Risk team and regulators require interpretable model with clear coefficients and odds ratios. Less prone to overfitting with proper regularization.</p>
+                        <p style="margin-top: 1rem;"><strong>KPIs:</strong> Reduce default rate (NPL%) and expected loss while maintaining approval rates. Focus on recall/precision for 5-7% default class, not overall accuracy.</p>
+                        <p style="margin-top: 1rem;"><strong>Validation:</strong> Train/validation/test split with stratified k-fold CV. L2 regularization controls variance. Track performance over time to detect drift.</p>
+                        <p style="margin-top: 1rem;"><strong>Risks:</strong> Assumes linear log-odds relationship. Address with interaction terms and regular back-testing. Check for bias across protected groups for regulatory compliance.</p>
+                    </div>
+                    <div class="comparison-strengths">
+                        <h4>Strengths:</h4>
+                        <ul>
+                            <li>Clearly states business problem and time horizon</li>
+                            <li>Describes data in realistic detail</li>
+                            <li>Explains algorithm choice with interpretability focus</li>
+                            <li>Links to concrete business KPIs and discusses misclassification costs</li>
+                            <li>Shows understanding of validation and overfitting control</li>
+                            <li>Addresses governance, fairness, and regulatory aspects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Submission Guidelines -->
+    <section id="submission">
+        <div class="container">
+            <h2>Submission Guidelines</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="checkbox">✓</div>
+                    <div class="checklist-text">Single submission per group (PDF format only)</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox">✓</div>
+                    <div class="checklist-text">Multiple files? Use shared drive with "Anyone with link can view" access</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox">✓</div>
+                    <div class="checklist-text">Submit at least 30 minutes before the deadline</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox">✓</div>
+                    <div class="checklist-text">Submissions cannot be changed after upload</div>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox">✓</div>
+                    <div class="checklist-text">Contact student support for any issues before the deadline</div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Important Deadline Reminder</h4>
+                <p><strong>Date:</strong> November 26, 2025<br>
+                <strong>Time:</strong> 11:59 PM IST<br>
+                <strong>No files will be updated after the deadline</strong></p>
+            </div>
+
+            <div style="margin-top: 3rem; text-align: center;">
+                <div class="countdown-timer">
+                    <div class="timer-grid">
+                        <div class="timer-unit">
+                            <span class="timer-value" id="days2">00</span>
+                            <span class="timer-label">Days</span>
+                        </div>
+                        <div class="timer-unit">
+                            <span class="timer-value" id="hours2">00</span>
+                            <span class="timer-label">Hours</span>
+                        </div>
+                        <div class="timer-unit">
+                            <span class="timer-value" id="minutes2">00</span>
+                            <span class="timer-label">Minutes</span>
+                        </div>
+                        <div class="timer-unit">
+                            <span class="timer-value" id="seconds2">00</span>
+                            <span class="timer-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: GenAI Policy -->
+    <section id="genai">
+        <div class="container">
+            <h2>GenAI Tool Usage Policy</h2>
+            <div class="policy-grid">
+                <div class="policy-section allowed">
+                    <h3><span>✓</span> Allowed Uses</h3>
+                    <ul class="policy-list">
+                        <li>
+                            <span class="policy-icon" style="color: #34C759;">✓</span>
+                            <span>Identify potential use cases and relevant sources</span>
+                        </li>
+                        <li>
+                            <span class="policy-icon" style="color: #34C759;">✓</span>
+                            <span>Brainstorm ideas and outline your sections</span>
+                        </li>
+                        <li>
+                            <span class="policy-icon" style="color: #34C759;">✓</span>
+                            <span>Discover credible sources and references</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="policy-section required">
+                    <h3><span>✓</span> Required Actions</h3>
+                    <ul class="policy-list">
+                        <li>
+                            <span class="policy-icon" style="color: var(--apple-blue);">✓</span>
+                            <span>Verify all facts with independent sources</span>
+                        </li>
+                        <li>
+                            <span class="policy-icon" style="color: var(--apple-blue);">✓</span>
+                            <span>Cite any reports, articles, or case studies properly</span>
+                        </li>
+                        <li>
+                            <span class="policy-icon" style="color: var(--apple-blue);">✓</span>
+                            <span>Write your own text in your own words</span>
+                        </li>
+                        <li>
+                            <span class="policy-icon" style="color: var(--apple-blue);">✓</span>
+                            <span>Understand and defend every sentence you submit</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box" style="margin-top: 2rem;">
+                <h4>🎓 Accountability</h4>
+                <p>Do not paste raw AI-generated content. You are accountable for accuracy and coherence. If you cannot explain something in class, it should not be in your report.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const deadline = new Date('November 26, 2025 23:59:59 GMT+0530').getTime();
+            const now = new Date().getTime();
+            const distance = deadline - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            document.getElementById('days2').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours2').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes2').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds2').textContent = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelectorAll('.timer-value').forEach(el => el.textContent = '00');
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Progress Bar
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        }
+
+        // Navigation Active State
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Back to Top Button
+        function toggleBackToTop() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Navbar Scroll Effect
+        function updateNavbar() {
+            const navbar = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        // Accordion Toggle
+        function toggleAccordionItem(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const isActive = item.classList.contains('active');
+
+            // Close all items in the same accordion
+            const accordion = item.parentElement;
+            accordion.querySelectorAll('.accordion-item').forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.accordion-content').style.maxHeight = null;
+            });
+
+            // Toggle current item
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }
+        }
+
+        function toggleAccordion(header) {
+            const step = header.parentElement;
+            const accordion = step.querySelector('.accordion');
+            if (accordion) {
+                const firstItem = accordion.querySelector('.accordion-item');
+                if (firstItem && !firstItem.classList.contains('active')) {
+                    toggleAccordionItem(firstItem.querySelector('.accordion-header'));
+                }
+            }
+        }
+
+        // Event Listeners
+        window.addEventListener('scroll', function() {
+            updateProgressBar();
+            updateActiveNav();
+            toggleBackToTop();
+            updateNavbar();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgressBar();
+            updateActiveNav();
+            updateNavbar();
+
+            // Make first section visible immediately
+            document.querySelector('section').classList.add('visible');
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
