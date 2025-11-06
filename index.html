@@ -801,6 +801,56 @@
             background: #0051D5;
         }
 
+        /* Industry Selector */
+        .industry-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .industry-btn {
+            background: white;
+            border: 3px solid #E5E5EA;
+            padding: 1.25rem 2.5rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .industry-btn:hover {
+            border-color: var(--apple-blue);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .industry-btn.active {
+            background: var(--apple-blue);
+            color: white;
+            border-color: var(--apple-blue);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .industry-icon {
+            font-size: 1.75rem;
+        }
+
+        /* Industry Content */
+        .industry-content {
+            display: none;
+        }
+
+        .industry-content.active {
+            display: block;
+        }
+
         /* Industry Problems Section */
         .industry-overview {
             background: linear-gradient(135deg, #F0F7FF 0%, #FFFFFF 100%);
@@ -1475,32 +1525,46 @@
     <!-- Industry-Specific Business Problems Section -->
     <section id="industry-problems">
         <div class="container">
-            <h2>Banking & Financial Services</h2>
-            <p style="font-size: 1.125rem; margin-bottom: 2rem;">Real-world AI/ML business problems and use cases</p>
+            <h2>Industry Use Case Library</h2>
+            <p style="font-size: 1.125rem; margin-bottom: 2rem;">Real-world problems. Ready-to-use datasets. Proven business impact.</p>
 
-            <div class="industry-overview">
-                <h3>🏦 Industry Overview</h3>
-                <p>The global banking and financial services sector manages $200+ trillion in assets, processes billions of transactions daily, and faces increasing regulatory scrutiny, digital disruption, and cybersecurity threats.</p>
+            <!-- Industry Selector -->
+            <div class="industry-selector">
+                <button class="industry-btn active" onclick="switchIndustry('banking')">
+                    <span class="industry-icon">🏦</span>
+                    <span>Banking & Financial Services</span>
+                </button>
+                <button class="industry-btn" onclick="switchIndustry('healthcare')">
+                    <span class="industry-icon">🏥</span>
+                    <span>Healthcare & Pharma</span>
+                </button>
             </div>
 
-            <!-- Domain Tabs -->
-            <div class="domain-tabs">
-                <div class="domain-tab active" onclick="switchDomain('retail')">
-                    <span class="domain-icon">💳</span>
-                    <span>Retail Banking</span>
+            <!-- Banking Industry Content -->
+            <div class="industry-content active" id="banking-content">
+                <div class="industry-overview">
+                    <h3>🏦 Industry Overview</h3>
+                    <p>The global banking and financial services sector manages $200+ trillion in assets, processes billions of transactions daily, and faces increasing regulatory scrutiny, digital disruption, and cybersecurity threats.</p>
                 </div>
-                <div class="domain-tab" onclick="switchDomain('investment')">
-                    <span class="domain-icon">📈</span>
-                    <span>Investment Banking & Trading</span>
+
+                <!-- Domain Tabs -->
+                <div class="domain-tabs">
+                    <div class="domain-tab active" onclick="switchDomain('banking', 'retail')">
+                        <span class="domain-icon">💳</span>
+                        <span>Retail Banking</span>
+                    </div>
+                    <div class="domain-tab" onclick="switchDomain('banking', 'investment')">
+                        <span class="domain-icon">📈</span>
+                        <span>Investment Banking & Trading</span>
+                    </div>
+                    <div class="domain-tab" onclick="switchDomain('banking', 'insurance')">
+                        <span class="domain-icon">🛡️</span>
+                        <span>Insurance</span>
+                    </div>
                 </div>
-                <div class="domain-tab" onclick="switchDomain('insurance')">
-                    <span class="domain-icon">🛡️</span>
-                    <span>Insurance</span>
-                </div>
-            </div>
 
             <!-- Retail Banking Problems -->
-            <div class="problems-container active" id="retail-problems">
+            <div class="problems-container active" id="banking-retail-problems">
                 <!-- Problem 1: Credit Risk Assessment -->
                 <div class="problem-card">
                     <div class="problem-header">
@@ -1767,7 +1831,7 @@
             </div>
 
             <!-- Investment Banking Problems -->
-            <div class="problems-container" id="investment-problems">
+            <div class="problems-container" id="banking-investment-problems">
                 <!-- Problem 4: Algorithmic Trading -->
                 <div class="problem-card">
                     <div class="problem-header">
@@ -1948,7 +2012,7 @@
             </div>
 
             <!-- Insurance Problems -->
-            <div class="problems-container" id="insurance-problems">
+            <div class="problems-container" id="banking-insurance-problems">
                 <!-- Problem 6: Insurance Fraud Detection -->
                 <div class="problem-card">
                     <div class="problem-header">
@@ -2034,6 +2098,808 @@
                     </div>
                 </div>
             </div>
+            </div>
+            <!-- End Banking Content -->
+
+            <!-- Healthcare & Pharma Industry Content -->
+            <div class="industry-content" id="healthcare-content">
+                <div class="industry-overview">
+                    <h3>🏥 Industry Overview</h3>
+                    <p>The global healthcare and pharmaceutical industry represents $12+ trillion in annual spending, serving billions of patients worldwide while facing challenges in care quality, drug development costs, and population health management.</p>
+                </div>
+
+                <!-- Domain Tabs -->
+                <div class="domain-tabs">
+                    <div class="domain-tab active" onclick="switchDomain('healthcare', 'clinical')">
+                        <span class="domain-icon">🏥</span>
+                        <span>Clinical Care & Patient Outcomes</span>
+                    </div>
+                    <div class="domain-tab" onclick="switchDomain('healthcare', 'pharma')">
+                        <span class="domain-icon">💊</span>
+                        <span>Pharmaceutical R&D</span>
+                    </div>
+                    <div class="domain-tab" onclick="switchDomain('healthcare', 'population')">
+                        <span class="domain-icon">👥</span>
+                        <span>Population Health</span>
+                    </div>
+                </div>
+
+                <!-- Clinical Care Problems -->
+                <div class="problems-container active" id="healthcare-clinical-problems">
+                    <!-- Problem 1: Hospital Readmission -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 1</span>
+                            <h3 class="problem-title">Hospital Readmission Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>30-day hospital readmissions cost the US healthcare system $26 billion annually. Hospitals face Medicare penalties for excess readmissions.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>ML-based risk stratification system to identify high-risk patients before discharge</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Logistic Regression (Primary)</span>
+                                <span class="algorithm-tag alternative">Random Forest</span>
+                                <span class="algorithm-tag alternative">XGBoost</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📉</div>
+                                            <div class="impact-value">15-25%</div>
+                                            <div class="impact-label">Readmission Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$50-100M</div>
+                                            <div class="impact-label">Annual Savings</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">✅</div>
+                                            <div class="impact-value">Avoid</div>
+                                            <div class="impact-label">Medicare Penalties</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Kaiser Permanente:</span> Achieved 20% reduction in readmissions using ML models</li>
+                                        <li><span class="company-name">Mayo Clinic:</span> Reduced cardiac readmissions by 17% through risk stratification</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">AUC-ROC</div>
+                                            <div class="kpi-target">> 0.70</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Readmission Rate</div>
+                                            <div class="kpi-target">< 15%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Intervention Success</div>
+                                            <div class="kpi-target">> 60%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">MIMIC-III Database</span>
+                                        <span class="data-tag">CMS Hospital Data</span>
+                                        <span class="data-tag">PhysioNet</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 2: Patient No-Show -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 2</span>
+                            <h3 class="problem-title">Patient No-Show Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>15-30% no-show rate costs $150 billion annually in US healthcare. Empty slots mean lost revenue and delayed care for other patients.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>Predictive no-show model enabling dynamic overbooking and targeted reminders</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Logistic Regression (Primary)</span>
+                                <span class="algorithm-tag alternative">Random Forest</span>
+                                <span class="algorithm-tag alternative">XGBoost</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📉</div>
+                                            <div class="impact-value">20-30%</div>
+                                            <div class="impact-label">No-Show Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$5-15M</div>
+                                            <div class="impact-label">Revenue Recovered</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">⚡</div>
+                                            <div class="impact-value">85%+</div>
+                                            <div class="impact-label">Utilization Rate</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Johns Hopkins:</span> ML model achieved 0.82 AUC for no-show prediction</li>
+                                        <li><span class="company-name">Cleveland Clinic:</span> Reduced no-shows by 25% using targeted SMS reminders</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">No-Show Rate</div>
+                                            <div class="kpi-target">< 12%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">AUC-ROC</div>
+                                            <div class="kpi-target">> 0.75</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Slot Utilization</div>
+                                            <div class="kpi-target">> 85%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">Kaggle: Medical No-Shows</span>
+                                        <span class="data-tag">UCI: Appointment Dataset</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 3: Sepsis Early Detection -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 3</span>
+                            <h3 class="problem-title">Sepsis Early Detection</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>Sepsis affects 1.7M Americans annually. Mortality increases 7-8% per hour of delayed treatment. Early detection is critical for survival.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>Real-time ML monitoring system using vital signs and lab values</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Random Forest (Primary)</span>
+                                <span class="algorithm-tag">XGBoost (Primary)</span>
+                                <span class="algorithm-tag alternative">LSTM</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💙</div>
+                                            <div class="impact-value">15-25%</div>
+                                            <div class="impact-label">Mortality Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$8-12K</div>
+                                            <div class="impact-label">Savings per Case</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">⏰</div>
+                                            <div class="impact-value">28 hours</div>
+                                            <div class="impact-label">Earlier Detection</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Johns Hopkins InSight:</span> Detected sepsis 28 hours earlier than traditional methods</li>
+                                        <li><span class="company-name">Duke University:</span> Reduced sepsis mortality by 18% using deep learning</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Sensitivity</div>
+                                            <div class="kpi-target">> 85%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Lead Time</div>
+                                            <div class="kpi-target">> 12 hours</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">False Positives</div>
+                                            <div class="kpi-target">< 15%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">MIMIC-III Database</span>
+                                        <span class="data-tag">PhysioNet Sepsis Challenge</span>
+                                        <span class="data-tag">eICU Database</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pharmaceutical R&D Problems -->
+                <div class="problems-container" id="healthcare-pharma-problems">
+                    <!-- Problem 4: Drug Efficacy Prediction -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 4</span>
+                            <h3 class="problem-title">Drug Efficacy Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>90% of drugs fail in clinical trials, costing $2.6 billion over 10-15 years per successful drug. Late-stage failures are catastrophic.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>ML models to predict Phase III success using preclinical and early clinical data</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Random Forest (Primary)</span>
+                                <span class="algorithm-tag alternative">XGBoost</span>
+                                <span class="algorithm-tag alternative">Neural Networks</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📊</div>
+                                            <div class="impact-value">20-30%</div>
+                                            <div class="impact-label">Failure Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$200-500M</div>
+                                            <div class="impact-label">Saved per Failure</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">⚡</div>
+                                            <div class="impact-value">2-3 years</div>
+                                            <div class="impact-label">Time Saved</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Pfizer:</span> Reduced late-stage failures by 15% using ML prioritization</li>
+                                        <li><span class="company-name">AstraZeneca:</span> ML models predict Phase III success with 70% accuracy</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Prediction Accuracy</div>
+                                            <div class="kpi-target">> 65%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">AUC-ROC</div>
+                                            <div class="kpi-target">> 0.70</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">ROI</div>
+                                            <div class="kpi-target">5-10x</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">ClinicalTrials.gov</span>
+                                        <span class="data-tag">DrugBank</span>
+                                        <span class="data-tag">ChEMBL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 5: Adverse Drug Event Prediction -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 5</span>
+                            <h3 class="problem-title">Adverse Drug Event (ADE) Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>ADEs cause 100,000+ deaths annually and cost $30-130 billion. Drug recalls damage brand reputation and revenue.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>ML-based real-time monitoring and predictive alerts for adverse events</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Logistic Regression (Primary)</span>
+                                <span class="algorithm-tag alternative">Random Forest</span>
+                                <span class="algorithm-tag alternative">XGBoost</span>
+                                <span class="algorithm-tag alternative">NLP</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">🛡️</div>
+                                            <div class="impact-value">30-50%</div>
+                                            <div class="impact-label">Preventable ADEs</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$100M-1B</div>
+                                            <div class="impact-label">Avoid Recalls</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💙</div>
+                                            <div class="impact-value">Lives</div>
+                                            <div class="impact-label">Saved</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Mayo Clinic:</span> Reduced ADEs by 25% using real-time monitoring</li>
+                                        <li><span class="company-name">FDA FAERS:</span> ML analysis identifies signals 6 months earlier than traditional methods</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Detection Rate</div>
+                                            <div class="kpi-target">> 80%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">False Positives</div>
+                                            <div class="kpi-target">< 15%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Alert Lead Time</div>
+                                            <div class="kpi-target">3-6 months</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">FDA FAERS Database</span>
+                                        <span class="data-tag">PubMed</span>
+                                        <span class="data-tag">EHR Systems</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 6: Drug Demand Forecasting -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 6</span>
+                            <h3 class="problem-title">Drug Demand Forecasting</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>Pharmaceutical supply chain waste totals $15 billion annually. Poor forecasting causes stockouts and expired inventory.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>Time series forecasting for dynamic inventory optimization</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">ARIMA (Primary)</span>
+                                <span class="algorithm-tag alternative">Prophet</span>
+                                <span class="algorithm-tag alternative">LSTM</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📉</div>
+                                            <div class="impact-value">20-35%</div>
+                                            <div class="impact-label">Inventory Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">✅</div>
+                                            <div class="impact-value">40-60%</div>
+                                            <div class="impact-label">Fewer Stockouts</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$30M+</div>
+                                            <div class="impact-label">Annual Savings</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">CVS Health:</span> Saved $30M annually through dynamic inventory optimization</li>
+                                        <li><span class="company-name">Walgreens:</span> Reduced stockouts by 45% using ML forecasting</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Forecast Accuracy</div>
+                                            <div class="kpi-target">> 85%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">MAPE</div>
+                                            <div class="kpi-target">< 15%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Stockout Rate</div>
+                                            <div class="kpi-target">< 5%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">IQVIA Prescription Data</span>
+                                        <span class="data-tag">CDC Disease Trends</span>
+                                        <span class="data-tag">Historical Sales Data</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Population Health Problems -->
+                <div class="problems-container" id="healthcare-population-problems">
+                    <!-- Problem 7: Disease Outbreak Prediction -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 7</span>
+                            <h3 class="problem-title">Disease Outbreak Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>Disease outbreaks cost billions in healthcare expenses and economic disruption. Early detection reduces severity by 40-60%.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>Predictive surveillance system using multiple data streams for early warning</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">ARIMA (Primary)</span>
+                                <span class="algorithm-tag alternative">Prophet</span>
+                                <span class="algorithm-tag alternative">Random Forest</span>
+                                <span class="algorithm-tag alternative">LSTM</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">⚠️</div>
+                                            <div class="impact-value">20-40%</div>
+                                            <div class="impact-label">Severity Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">⏰</div>
+                                            <div class="impact-value">9 days</div>
+                                            <div class="impact-label">Earlier Detection</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">🌍</div>
+                                            <div class="impact-value">Billions</div>
+                                            <div class="impact-label">Saved</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">BlueDot:</span> Predicted COVID-19 outbreak 9 days before WHO announcement</li>
+                                        <li><span class="company-name">Google Flu Trends:</span> Tracked flu outbreaks 1-2 weeks ahead of CDC reports</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Lead Time</div>
+                                            <div class="kpi-target">> 7 days</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Detection Rate</div>
+                                            <div class="kpi-target">> 80%</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">False Alarms</div>
+                                            <div class="kpi-target">< 20%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">CDC WONDER</span>
+                                        <span class="data-tag">WHO Global Data</span>
+                                        <span class="data-tag">HealthMap</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 8: Patient Segmentation -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 8</span>
+                            <h3 class="problem-title">Patient Segmentation for Risk Stratification</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>5% of patients account for 50% of healthcare costs. Identifying high-risk cohorts enables targeted interventions.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>Unsupervised clustering to segment populations by cost and risk profiles</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">K-Means (Primary)</span>
+                                <span class="algorithm-tag alternative">Hierarchical Clustering</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📉</div>
+                                            <div class="impact-value">15-25%</div>
+                                            <div class="impact-label">Cost Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$10-30M</div>
+                                            <div class="impact-label">Annual Savings</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">🎯</div>
+                                            <div class="impact-value">Targeted</div>
+                                            <div class="impact-label">Interventions</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Kaiser Permanente:</span> Achieved 20% cost reduction across 12M members using risk segmentation</li>
+                                        <li><span class="company-name">UnitedHealth:</span> Identified 8% of members responsible for 60% of costs</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Silhouette Score</div>
+                                            <div class="kpi-target">> 0.5</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Cost per Segment</div>
+                                            <div class="kpi-target">Variance</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Intervention ROI</div>
+                                            <div class="kpi-target">> 3x</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">CMS Medicare Data</span>
+                                        <span class="data-tag">IBM MarketScan</span>
+                                        <span class="data-tag">Optum Claims</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Problem 9: Chronic Disease Progression -->
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <span class="problem-number">Problem 9</span>
+                            <h3 class="problem-title">Chronic Disease Progression Prediction</h3>
+                        </div>
+
+                        <div class="problem-challenge">
+                            <h5>Business Challenge</h5>
+                            <p>Chronic diseases account for 70% of healthcare spending. Predicting disease progression enables preventive care and reduces complications.</p>
+                        </div>
+
+                        <div class="problem-solution">
+                            <h5>Proposed Solution</h5>
+                            <p>ML models to predict disease trajectory and complication risk</p>
+                        </div>
+
+                        <div class="algorithms-section">
+                            <h5>Algorithms Applicable</h5>
+                            <div class="algorithm-tags">
+                                <span class="algorithm-tag">Random Forest (Primary)</span>
+                                <span class="algorithm-tag alternative">XGBoost</span>
+                                <span class="algorithm-tag alternative">Logistic Regression</span>
+                            </div>
+                        </div>
+
+                        <div class="expandable-section">
+                            <button class="expand-btn" onclick="toggleExpand(this)">
+                                <span>View Business Impact & Details</span>
+                                <span class="expand-icon">▼</span>
+                            </button>
+                            <div class="expand-content">
+                                <div class="expand-content-inner">
+                                    <h5 style="margin-bottom: 1rem;">Business Impact</h5>
+                                    <div class="impact-grid">
+                                        <div class="impact-item">
+                                            <div class="impact-icon">📉</div>
+                                            <div class="impact-value">20-30%</div>
+                                            <div class="impact-label">Complication Reduction</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💰</div>
+                                            <div class="impact-value">$5-15K</div>
+                                            <div class="impact-label">Savings per Patient</div>
+                                        </div>
+                                        <div class="impact-item">
+                                            <div class="impact-icon">💙</div>
+                                            <div class="impact-value">Better</div>
+                                            <div class="impact-label">Quality of Life</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Real-World Examples</h5>
+                                    <ul class="examples-list">
+                                        <li><span class="company-name">Cleveland Clinic:</span> Identified 25% of diabetic patients at high complication risk</li>
+                                        <li><span class="company-name">Mount Sinai:</span> Reduced kidney disease progression by 18% through early intervention</li>
+                                    </ul>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Key Performance Indicators</h5>
+                                    <div class="kpi-grid">
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">AUC-ROC</div>
+                                            <div class="kpi-target">> 0.75</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Complication Rate</div>
+                                            <div class="kpi-target">Reduction %</div>
+                                        </div>
+                                        <div class="kpi-card">
+                                            <div class="kpi-name">Early Detection</div>
+                                            <div class="kpi-target">> 80%</div>
+                                        </div>
+                                    </div>
+
+                                    <h5 style="margin: 1.5rem 0 0.75rem;">Data Sources</h5>
+                                    <div class="data-source-tags">
+                                        <span class="data-tag">MIMIC-III</span>
+                                        <span class="data-tag">Framingham Heart Study</span>
+                                        <span class="data-tag">UK Biobank</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Healthcare Content -->
+
         </div>
     </section>
 
@@ -2384,15 +3250,38 @@
     <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
 
     <script>
+        // Industry Switcher
+        function switchIndustry(industry) {
+            // Remove active class from all industry buttons
+            document.querySelectorAll('.industry-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Hide all industry content
+            document.querySelectorAll('.industry-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Activate clicked industry button
+            event.target.closest('.industry-btn').classList.add('active');
+
+            // Show corresponding industry content
+            const contentId = industry + '-content';
+            document.getElementById(contentId).classList.add('active');
+        }
+
         // Domain Tab Switcher
-        function switchDomain(domain) {
-            // Remove active class from all tabs
-            document.querySelectorAll('.domain-tab').forEach(tab => {
+        function switchDomain(industry, domain) {
+            // Get the current industry content
+            const industryContent = document.getElementById(industry + '-content');
+
+            // Remove active class from tabs within this industry
+            industryContent.querySelectorAll('.domain-tab').forEach(tab => {
                 tab.classList.remove('active');
             });
 
-            // Hide all problem containers
-            document.querySelectorAll('.problems-container').forEach(container => {
+            // Hide all problem containers within this industry
+            industryContent.querySelectorAll('.problems-container').forEach(container => {
                 container.classList.remove('active');
             });
 
@@ -2400,7 +3289,7 @@
             event.target.closest('.domain-tab').classList.add('active');
 
             // Show corresponding problems container
-            const containerId = domain + '-problems';
+            const containerId = industry + '-' + domain + '-problems';
             document.getElementById(containerId).classList.add('active');
         }
 
